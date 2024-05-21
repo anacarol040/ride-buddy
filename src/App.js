@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import {React, useState} from "react";
+import {Select} from "antd";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const { Option } = Select;
+
+const LandingPage: React.FC = () => {
+
+    const cities = ['Airdrie', 'Banff', 'Calgary', 'Canmore', 'Vancouver'];
+    const [from, setFrom] = useState('');
+
+    const handleFromChange = (value) => {
+        setFrom(value);
+    }
+
+    return (
+      <>
+        <div>
+          <h1>Find a Ride</h1>
+            <form>
+                <div>
+                    <label>From: </label>
+                    <Select
+                        value={from}
+                        onChange={handleFromChange}
+                        placeholder="Select starting Location"
+                        style={{width:300}}
+                    >
+                        {cities.map(city => (
+                                <Option key={city} value={city}>{city}
+                                </Option>
+                            ))}
+                    </Select>
+                </div>
+                <div>
+                    <label>To: </label>
+                    <Select>
+
+                    </Select>
+
+                </div>
+
+            </form>
+
+        </div>
+      </>
+  )
 }
 
-export default App;
+export default LandingPage;
