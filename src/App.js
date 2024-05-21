@@ -1,62 +1,53 @@
 import {React, useState} from "react";
-import {Select} from "antd";
+import {Form, Select} from "antd";
 
 const { Option } = Select;
+const { Item } = Form
+
 
 const LandingPage: React.FC = () => {
 
     const cities = ['Airdrie', 'Banff', 'Calgary', 'Canmore', 'Vancouver'];
     const [from, setFrom] = useState('');
-    const [to, setTo] = useState('');
+    const [destination, setDestination] = useState('');
 
     const handleFromChange = (value) => {
         setFrom(value);
     }
 
-    const handleToChange = (value) => {
-        setTo(value);
+    const handleDestinationChange = (value) => {
+        setDestination(value);
     }
 
     return (
-      <>
-        <div>
-          <h1>Find a Ride</h1>
-            <form>
-                <div>
-                    <label>From: </label>
-                    <Select
-                        value={from}
-                        onChange={handleFromChange}
-                        placeholder="Select starting Location"
-                        style={{width:300}}
-                    >
-                        {cities.map(city => (
-                                <Option key={city} value={city}>{city}
-                                </Option>
-                            ))}
-                    </Select>
-                </div>
-                <div>
-                    <label>To: </label>
-                    <Select
-                        value={to}
-                        onChange={handleToChange}
-                        placeholder="Select destination"
-                        style={{width:300}}
-                    >
-                        {cities.map(city => (
+        <Form>
+            <Item name='to' label='From: '>
+                <Select
+                    placeholder='Select starting location'
+                    value={from}
+                    onChange={handleFromChange}
+                    style={{width:300}}
+                >
+                    {cities.map(city => (
                             <Option key={city} value={city}>{city}
                             </Option>
                         ))}
-                    </Select>
-
-
-                </div>
-
-            </form>
-
-        </div>
-      </>
+                </Select>
+            </Item>
+            <Item name='to' label='To: '>
+                <Select
+                    placeholder='Select destination'
+                    value={destination}
+                    onChange={handleDestinationChange}
+                    style={{width:300}}
+                >
+                    {cities.map(city => (
+                        <Option key={city} value={city}>{city}
+                        </Option>
+                    ))}
+                </Select>
+            </Item>
+        </Form>
   )
 }
 
