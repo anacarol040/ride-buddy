@@ -7,9 +7,14 @@ const LandingPage: React.FC = () => {
 
     const cities = ['Airdrie', 'Banff', 'Calgary', 'Canmore', 'Vancouver'];
     const [from, setFrom] = useState('');
+    const [to, setTo] = useState('');
 
     const handleFromChange = (value) => {
         setFrom(value);
+    }
+
+    const handleToChange = (value) => {
+        setTo(value);
     }
 
     return (
@@ -33,9 +38,18 @@ const LandingPage: React.FC = () => {
                 </div>
                 <div>
                     <label>To: </label>
-                    <Select>
-
+                    <Select
+                        value={to}
+                        onChange={handleToChange}
+                        placeholder="Select destination"
+                        style={{width:300}}
+                    >
+                        {cities.map(city => (
+                            <Option key={city} value={city}>{city}
+                            </Option>
+                        ))}
                     </Select>
+
 
                 </div>
 
